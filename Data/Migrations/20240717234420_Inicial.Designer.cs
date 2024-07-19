@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SolomonsAdviceWebApp.Data;
 
@@ -11,13 +12,15 @@ using SolomonsAdviceWebApp.Data;
 namespace SolomonsAdviceWebApp.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240717234420_Inicial")]
+    partial class Inicial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.7")
+                .HasAnnotation("ProductVersion", "8.0.6")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -234,8 +237,7 @@ namespace SolomonsAdviceWebApp.Data.Migrations
 
                     b.Property<string>("Book")
                         .IsRequired()
-                        .HasMaxLength(25)
-                        .HasColumnType("nvarchar(25)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Chapter")
                         .HasColumnType("int");
@@ -245,10 +247,8 @@ namespace SolomonsAdviceWebApp.Data.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
-                    b.Property<string>("Verses")
-                        .IsRequired()
-                        .HasMaxLength(8)
-                        .HasColumnType("nvarchar(8)");
+                    b.Property<int>("Verse")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -258,10 +258,10 @@ namespace SolomonsAdviceWebApp.Data.Migrations
                         new
                         {
                             Id = 1,
-                            Book = "Provérbios",
+                            Book = "",
                             Chapter = 1,
                             Content = "O temor do Senhor é o princípio do conhecimento; os loucos desprezam a sabedoria e a instrução.",
-                            Verses = "7"
+                            Verse = 19
                         });
                 });
 
