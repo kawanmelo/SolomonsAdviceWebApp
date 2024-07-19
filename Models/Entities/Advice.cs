@@ -20,10 +20,12 @@ namespace SolomonsAdviceWebApp.Models.Entities
         public int Chapter { get; set; }
 
         [Required]
-        public int Verse { get; set; }
+        [MaxLength(8)]
+        public string Verses { get; set; }
 
 
         [Required]
+        [MaxLength(25)]
         public string Book { get; set; }
     }
 }

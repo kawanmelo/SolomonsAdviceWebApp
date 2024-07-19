@@ -21,9 +21,9 @@ namespace SolomonsAdviceWebApp.Data
                 {
                     Id = 1,
                     Content = "O temor do Senhor é o princípio do conhecimento; os loucos desprezam a sabedoria e a instrução.",
-                    Verse = 19,
                     Chapter = 1,
-                    Book = ""
+                    Verses = "7",
+                    Book = "Provérbios"
                 });
         }
     }
