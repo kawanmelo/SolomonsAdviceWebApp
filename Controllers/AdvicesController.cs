@@ -6,12 +6,13 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using SolomonsAdviceWebApp.Areas.Identity.Constants;
 using SolomonsAdviceWebApp.Data;
 using SolomonsAdviceWebApp.Models.Entities;
 
 namespace SolomonsAdviceWebApp.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = Roles.Admin)]
     public class AdvicesController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -68,6 +69,7 @@ namespace SolomonsAdviceWebApp.Controllers
         }
 
         // GET: Advices/Edit/5
+        [Authorize(Roles = Roles.Admin)]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
