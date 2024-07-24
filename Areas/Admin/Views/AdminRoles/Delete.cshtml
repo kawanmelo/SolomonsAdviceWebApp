@@ -1,0 +1,21 @@
+﻿@model IdentityRole
+
+<h2 class="text-danger">Do you confirm the exclusion of this Role ? </h2>
+<div>
+    <h4>Solomon’s</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="sol-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="@Model.Id" />
+        <input type="submit" value="Delete" class="btn btn-danger" />
+        <a asp-action="Index">Return</a>
+    </form>
+</div>
