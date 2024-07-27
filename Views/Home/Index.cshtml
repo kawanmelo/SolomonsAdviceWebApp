@@ -1,9 +1,45 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@model SolomonsAdviceWebApp.Models.Entities.Advice
 
-<div class="text-center">
-    <h1 class="display-4">Solomon’s Advice</h1>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solomon's Advice - Home</title>
+</head>
+<body>
+    <div class="hero">
+        <h1>Solomon's Advice</h1>
+        <p>Get some advices</p>
+    </div>
 
-    @ViewBag.RandomAdvice.Content
-</div>
+    <div class="container">
+        <div class="card-advice">
+            <div class="card-image"></div>
+            <div class="card-content">
+                <h5>@Model.Book - @Model.Chapter : @Model.Verses</h5>
+                <p id="textToCopy">@Model.Content</p>
+                <button class="read-more" onclick="copyText()">Copy advice</button>
+            </div>
+        </div>
+
+        <div class="functions">
+            <div class="function-card">
+                <img src="@Url.Content("~/Images/procurar.png")" alt="Search Icon">
+                <h5>Search for advices</h5>
+                <p>Find advices containing specific words or phrases.</p>
+                <a asp-action="AdviceByWord">Go</a>
+            </div>
+            <div class="function-card">
+                <img src="@Url.Content("~/Images/surprise-box.png")" alt="Random Advice Icon">
+                <h5>Get random advices</h5>
+                <p>Get as much random advices as you want.</p>
+                <a asp-action="RandomAdvice">Go</a>
+            </div>
+            <div class="function-card">
+                <img src="@Url.Content("~/Images/favorite.png")" alt="Favorite Advice Icon">
+                <h5>Mark as favorite</h5>
+                <p>Pick your favor advices and save them to read later.</p>
+                <a href="#">Learn More</a>
+            </div>
+        </div>
+    </div>
+</body>
