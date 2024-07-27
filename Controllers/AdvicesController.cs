@@ -12,7 +12,7 @@ using SolomonsAdviceWebApp.Models.Entities;
 
 namespace SolomonsAdviceWebApp.Controllers
 {
-    [Authorize(Roles = Roles.Admin)]
+    [Authorize(Roles = Roles.Admin + "," + Roles.Manager)]
     public class AdvicesController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -69,7 +69,6 @@ namespace SolomonsAdviceWebApp.Controllers
         }
 
         // GET: Advices/Edit/5
-        [Authorize(Roles = Roles.Admin)]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
