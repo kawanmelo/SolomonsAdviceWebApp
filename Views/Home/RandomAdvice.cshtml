@@ -1,0 +1,13 @@
+﻿@model SolomonsAdviceWebApp.Models.Entities.Advice
+
+<div class="container">
+    <div class="card-advice">
+        <div class="card-image"></div>
+        <div class="card-content">
+            <h5>@Model.Book @Model.Chapter : @Model.Verses</h5>
+            <p id="textToCopy">@Model.Content</p>
+            <button class="read-more" onclick="copyText()">Copy advice</button>
+            <a asp-action="RandomAdvice">Get another one</a>
+        </div>
+    </div>
+</div>
