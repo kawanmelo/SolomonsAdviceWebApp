@@ -1,0 +1,30 @@
+﻿@model IEnumerable<SolomonsAdviceWebApp.Models.Entities.Advice>
+
+
+
+    @if (Model.Any())
+    {
+        foreach (var advice in Model)
+        {
+
+        <div class="container">
+            <div class="card-advice">
+                <div class="card-image"></div>
+                <div class="card-content">
+                    <h5>@advice.Book @advice.Chapter : @advice.Verses</h5>
+                    <p id="textToCopy">@advice.Content</p>
+                    <button class="read-more" onclick="copyText()">Copy advice</button>
+                </div>
+            </div>
+        </div>
+        }
+    }
+    else{
+        <div>
+        <p><h2>No advices found with this word!</h2></p>
+        </div>
+    }
+
+<div>
+    <a asp-action="AdviceByWord">Back to search</a>
+</div>
