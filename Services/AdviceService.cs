@@ -4,6 +4,7 @@ using Microsoft.Identity.Client;
 using Microsoft.IdentityModel.Tokens;
 using SolomonsAdviceWebApp.Data;
 using SolomonsAdviceWebApp.Models.Entities;
+using System.Linq;
 
 namespace SolomonsAdviceWebApp.Services
 {
@@ -14,6 +15,21 @@ namespace SolomonsAdviceWebApp.Services
         public AdviceService(ApplicationDbContext context)
         {
             _context = context;
+        }
+
+        public async Task<Advice> GetByIdAsync(int id)
+        {
+            return await _context.Advices.FirstOrDefaultAsync(x => x.Id == id);
+        }
+
+
+        public async Task<List<Advice>> GetByTextAsync(string text)
+        {
+            if (!String.IsNullOrEmpty(text))
+            {
+                return await _context.Advices.Where(a => EF.Functions.Like(a.Content, $"%{text}%")).ToListAsync();
+            }
+            return null;
         }
 
         public async Task<Advice> GetRandomAsync()
