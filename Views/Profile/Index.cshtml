@@ -1,0 +1,39 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<IdentityUser> UserManager
+@model IEnumerable<SolomonsAdviceWebApp.Models.Entities.Advice>
+
+
+
+<ul class="nav nav-pills flex-column">
+        <li class="nav-item"><a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Account settings</a></li>
+        <li class="nav-item"></li>
+        <li class="nav-item"></li>
+        <li class="nav-item"></li>
+        <li class="nav-item"></li>
+</ul>
+
+@if (Model.Any())
+{
+    <h3>Favorite Advices</h3>
+    foreach (var advice in Model)
+    {
+
+        <div class="container">
+            <div class="card-advice">
+                <div class="card-image"></div>
+                <div class="card-content">
+                    <h5>@advice.Book @advice.Chapter : @advice.Verses</h5>
+                    <p id="textToCopy">@advice.Content</p>
+                    <button class="read-more" onclick="copyText()">Copy advice</button>
+                </div>
+            </div>
+        </div>
+    }
+}
+else
+{
+    <div>
+        <p><h2>You have not favorite advices</h2></p>
+    </div>
+}
+
