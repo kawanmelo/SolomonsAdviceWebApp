@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using SolomonsAdviceWebApp.Models;
 using SolomonsAdviceWebApp.Models.Entities;
 
 namespace SolomonsAdviceWebApp.Data
@@ -12,6 +13,7 @@ namespace SolomonsAdviceWebApp.Data
         }
 
         public DbSet<Advice> Advices { get; set; }
+        public DbSet<FavoriteAdvice> FavoriteAdvices { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -24,6 +26,12 @@ namespace SolomonsAdviceWebApp.Data
                     Chapter = 1,
                     Verses = "7",
                     Book = "Provérbios"
+                });
+            modelBuilder.Entity<FavoriteAdvice>().HasData(
+                new FavoriteAdvice
+                {
+                    AdviceId = 1011,
+                    UserId = "11189b29-5a80-4e45-b735-c8a05da230f7"
                 });
         }
     }
