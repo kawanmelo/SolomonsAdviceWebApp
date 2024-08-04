@@ -7,6 +7,8 @@ namespace SolomonsAdviceWebApp.Models
     public class FavoriteAdvice
     {
         [Key]
+        public string Id { get; set; }
+
         [Required]
         [MaxLength(450)]
         public string UserId { get; set; }

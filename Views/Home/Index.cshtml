@@ -1,4 +1,12 @@
-﻿@model SolomonsAdviceWebApp.Models.Entities.Advice
+﻿@using Microsoft.AspNetCore.Identity
+@using Microsoft.EntityFrameworkCore
+@model SolomonsAdviceWebApp.Models.Entities.Advice
+@inject SolomonsAdviceWebApp.Data.ApplicationDbContext _context
+@inject Microsoft.AspNetCore.Identity.UserManager<IdentityUser> _userManager
+@inject Microsoft.AspNetCore.Identity.SignInManager<IdentityUser> _signManager
+@{
+    FavoriteAdvice alreadyFavorite = null;
+}
 
 <head>
     <meta charset="UTF-8">
@@ -17,7 +25,33 @@
             <div class="card-content">
                 <h5>@Model.Book - @Model.Chapter : @Model.Verses</h5>
                 <p id="textToCopy">@Model.Content</p>
-                <button class="read-more" onclick="copyText()">Copy advice</button>
+                <div class="button-container">
+                    <button class="btn btn-primary" onclick="copyText()">Copy advice</button>
+                    @if (_signManager.IsSignedIn(User))
+                    {
+                        var userId = _userManager.GetUserId(User);
+                        alreadyFavorite = await _context.FavoriteAdvices
+                        .FirstOrDefaultAsync(fav => fav.AdviceId == Model.Id && fav.UserId == userId);
+                        if (alreadyFavorite != null)
+                        {
+                            <form asp-controller="Profile" asp-action="RemoveToFav" method="post">
+                                <input type="hidden" name="id" value="@Model.Id" />
+                                <button type="submit" class="btn-icon">
+                                    <img src="@Url.Content("~/Images/starFav.png")" alt="Star Favorite Icon">
+                                </button>
+                            </form>
+                        }
+                        else
+                        {
+                            <form asp-controller="Profile" asp-action="AddToFav" method="post">
+                                <input type="hidden" name="id" value="@Model.Id" />
+                                <button type="submit" class="btn-icon">
+                                    <img src="@Url.Content("~/Images/starNoFav.png")" alt="Star No Favorite Icon">
+                                </button>
+                            </form>
+                        }
+                    }
+                </div>
             </div>
         </div>
 
@@ -38,8 +72,9 @@
                 <img src="@Url.Content("~/Images/favorite.png")" alt="Favorite Advice Icon">
                 <h5>Mark as favorite</h5>
                 <p>Pick your favor advices and save them to read later.</p>
-                <a href="#">Learn More</a>
+                <a href="#">Read more</a>
             </div>
         </div>
     </div>
+    <div id="notification" class="notification"></div>
 </body>

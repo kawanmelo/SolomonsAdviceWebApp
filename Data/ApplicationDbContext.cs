@@ -30,6 +30,7 @@ namespace SolomonsAdviceWebApp.Data
             modelBuilder.Entity<FavoriteAdvice>().HasData(
                 new FavoriteAdvice
                 {
+                    Id = Guid.NewGuid().ToString(),
                     AdviceId = 1011,
                     UserId = "11189b29-5a80-4e45-b735-c8a05da230f7"
                 });
