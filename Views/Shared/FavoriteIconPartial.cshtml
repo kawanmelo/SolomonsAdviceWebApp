@@ -1,0 +1,20 @@
+﻿@model FavoriteIconViewModel
+@using Microsoft.AspNetCore.Identity
+@using Microsoft.EntityFrameworkCore
+@inject SolomonsAdviceWebApp.Data.ApplicationDbContext _context
+@inject Microsoft.AspNetCore.Identity.UserManager<IdentityUser> _userManager
+@inject Microsoft.AspNetCore.Identity.SignInManager<IdentityUser> _signManager
+
+<form asp-controller="Profile" asp-action="ToggleFavorite">
+    <input type="hidden" name="id" value="@Model.AdviceId"/>
+    <button type="submit" class="btn-icon">
+        @if (Model.IsFavorite)
+        {
+            <img src="@Url.Content("~/Images/starFav.png")" alt="Star Favorite Icon">
+        }
+        else
+        {
+            <img src="@Url.Content("~/Images/starNoFav.png")" alt="Star No Favorite Icon">
+        }
+    </button>
+</form>

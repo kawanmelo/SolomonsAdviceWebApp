@@ -1,31 +1,28 @@
 ﻿@model SolomonsAdviceWebApp.Models.Entities.Advice
 
 @{
-    ViewData["Title"] = "AdviceByWord";
+    ViewData["Title"] = "Search for Advice";
 }
 
-<h1>Search</h1>
+<div class="search-container">
+    <h1 class="search-title">Search for Advice</h1>
+    <h4 class="search-subtitle">Type specific words or phrases to find relevant advice.</h4>
+    <hr />
 
-<h4>Advice</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
+    <div class="search-form">
         <form asp-action="AdviceOnCard" method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Content" class="control-label">Type specific words or phrases.</label>
-                <input type="text" class="form-control" name="text" />
-                <span asp-validation-for="Content" class="text-danger"></span>
+                <input type="text" class="form-control search-input" name="text" placeholder="Enter keywords..." />
             </div>
             <div class="form-group">
-                <input type="submit" value="Search" class="btn btn-primary" />
+                <input type="submit" value="Search" class="btn btn-search" />
             </div>
         </form>
     </div>
-</div>
 
-<div class="col-md-4">
-    <a asp-action="Index">Back to home</a>
+    <div class="back-to-home">
+        <a asp-action="Index" class="btn btn-back">Back to home</a>
+    </div>
 </div>
 
 @section Scripts {

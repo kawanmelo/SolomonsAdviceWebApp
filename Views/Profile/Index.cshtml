@@ -1,39 +1,56 @@
 ﻿@using Microsoft.AspNetCore.Identity
-@inject UserManager<IdentityUser> UserManager
+@using Microsoft.EntityFrameworkCore
+@using SolomonsAdviceWebApp.Models
 @model IEnumerable<SolomonsAdviceWebApp.Models.Entities.Advice>
-
-
-
-<ul class="nav nav-pills flex-column">
-        <li class="nav-item"><a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Account settings</a></li>
-        <li class="nav-item"></li>
-        <li class="nav-item"></li>
-        <li class="nav-item"></li>
-        <li class="nav-item"></li>
-</ul>
-
-@if (Model.Any())
-{
-    <h3>Favorite Advices</h3>
-    foreach (var advice in Model)
-    {
-
-        <div class="container">
-            <div class="card-advice">
-                <div class="card-image"></div>
-                <div class="card-content">
-                    <h5>@advice.Book @advice.Chapter : @advice.Verses</h5>
-                    <p id="textToCopy">@advice.Content</p>
-                    <button class="read-more" onclick="copyText()">Copy advice</button>
-                </div>
-            </div>
-        </div>
-    }
+@inject SolomonsAdviceWebApp.Data.ApplicationDbContext _context
+@inject Microsoft.AspNetCore.Identity.UserManager<IdentityUser> _userManager
+@inject Microsoft.AspNetCore.Identity.SignInManager<IdentityUser> _signManager
+@{
+    FavoriteAdvice alreadyFavorite = null;
 }
-else
-{
-    <div>
-        <p><h2>You have not favorite advices</h2></p>
+
+<div class="profile-container">
+    <div class="profile-sidebar">
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Account settings</a>
+            </li>
+        </ul>
     </div>
-}
 
+    <div class="profile-content">
+        @if (Model != null && Model.Any())
+        {
+            <h3>Favorite Advices</h3>
+            <div class="container">
+                @foreach (var advice in Model)
+                {
+                    <div class="card-advice">
+                        <div class="card-content">
+                            <h5>@advice.Book - @advice.Chapter : @advice.Verses</h5>
+                            <p id="textToCopy">@advice.Content</p>
+                            <div class="button-container">
+                                <button class="btn btn-primary btn-copy" onclick="copyText()">Copy advice</button>
+                                @await Html.PartialAsync("FavoriteIconPartial",
+                                    new FavoriteIconViewModel
+                                    {
+                                        AdviceId = advice.Id,
+                                        IsFavorite = true
+                                    })
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+        else
+        {
+            <div class="no-favorites">
+                <h2>You have no favorite advices</h2>
+                <p>Start exploring and marking advices as your favorites to see them here.</p>
+            </div>
+        }
+    </div>
+</div>
+
+<div id="notification" class="notification"></div>

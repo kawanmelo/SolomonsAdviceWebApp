@@ -1,6 +1,13 @@
-﻿@model IEnumerable<SolomonsAdviceWebApp.Models.Entities.Advice>
-
-
+﻿@using Microsoft.AspNetCore.Identity
+@using Microsoft.EntityFrameworkCore
+@using SolomonsAdviceWebApp.Models
+@model IEnumerable<SolomonsAdviceWebApp.Models.Entities.Advice>
+@inject SolomonsAdviceWebApp.Data.ApplicationDbContext _context
+@inject Microsoft.AspNetCore.Identity.UserManager<IdentityUser> _userManager
+@inject Microsoft.AspNetCore.Identity.SignInManager<IdentityUser> _signManager
+@{
+    FavoriteAdvice alreadyFavorite = null;
+}
 
     @if (Model.Any())
     {
@@ -9,11 +16,36 @@
 
         <div class="container">
             <div class="card-advice">
-                <div class="card-image"></div>
                 <div class="card-content">
-                    <h5>@advice.Book @advice.Chapter : @advice.Verses</h5>
+                    <h5>@advice.Book - @advice.Chapter : @advice.Verses</h5>
                     <p id="textToCopy">@advice.Content</p>
-                    <button class="read-more" onclick="copyText()">Copy advice</button>
+                    <div class="button-container">
+                        <button class="btn btn-primary" onclick="copyText()">Copy advice</button>
+                        @if (_signManager.IsSignedIn(User))
+                        {
+                            var userId = _userManager.GetUserId(User);
+                            var existingFavorite = await _context.FavoriteAdvices
+                            .FirstOrDefaultAsync(fav => fav.AdviceId == advice.Id && fav.UserId == userId);
+                            if(existingFavorite == null)
+                            {
+                                @await Html.PartialAsync("FavoriteIconPartial",
+                                    new FavoriteIconViewModel
+                                    {
+                                        AdviceId = advice.Id,
+                                        IsFavorite = false
+                                    })
+                            }
+                            else
+                            {
+                                @await Html.PartialAsync("FavoriteIconPartial",
+                                    new FavoriteIconViewModel
+                                    {
+                                        AdviceId = advice.Id,
+                                        IsFavorite = true
+                                    })
+                            }
+                        }
+                    </div>
                 </div>
             </div>
         </div>
@@ -25,6 +57,8 @@
         </div>
     }
 
-<div>
-    <a asp-action="AdviceByWord">Back to search</a>
+<div class="back-to-home">
+    <a asp-action="AdviceByWord" class="btn btn-back">Back to search</a>
 </div>
+
+<div id="notification" class="notification"></div>

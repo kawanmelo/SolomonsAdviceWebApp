@@ -33,6 +33,8 @@ namespace SolomonsAdviceWebApp.Controllers
 
         }
 
+
+        [Authorize]
         public async Task<IActionResult> RandomAdvice()
         {
             var randomAdvice = await _adviceService.GetRandomAsync();
@@ -47,7 +49,7 @@ namespace SolomonsAdviceWebApp.Controllers
 
         [Authorize]
         [HttpPost]
-        public async Task<IActionResult> AdviceOnCard(string text)
+        public async Task<IActionResult> AdviceOnCard(string? text)
         {
 
             if(!String.IsNullOrEmpty(text))

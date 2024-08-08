@@ -1,5 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @using Microsoft.EntityFrameworkCore
+@using SolomonsAdviceWebApp.Models
 @model SolomonsAdviceWebApp.Models.Entities.Advice
 @inject SolomonsAdviceWebApp.Data.ApplicationDbContext _context
 @inject Microsoft.AspNetCore.Identity.UserManager<IdentityUser> _userManager
@@ -21,7 +22,6 @@
 
     <div class="container">
         <div class="card-advice">
-            <div class="card-image"></div>
             <div class="card-content">
                 <h5>@Model.Book - @Model.Chapter : @Model.Verses</h5>
                 <p id="textToCopy">@Model.Content</p>
@@ -30,25 +30,25 @@
                     @if (_signManager.IsSignedIn(User))
                     {
                         var userId = _userManager.GetUserId(User);
-                        alreadyFavorite = await _context.FavoriteAdvices
+                        var existingFavorite = await _context.FavoriteAdvices
                         .FirstOrDefaultAsync(fav => fav.AdviceId == Model.Id && fav.UserId == userId);
-                        if (alreadyFavorite != null)
+                        if(existingFavorite == null)
                         {
-                            <form asp-controller="Profile" asp-action="RemoveToFav" method="post">
-                                <input type="hidden" name="id" value="@Model.Id" />
-                                <button type="submit" class="btn-icon">
-                                    <img src="@Url.Content("~/Images/starFav.png")" alt="Star Favorite Icon">
-                                </button>
-                            </form>
+                            @await Html.PartialAsync("FavoriteIconPartial",
+                                new FavoriteIconViewModel
+                                {
+                                    AdviceId = Model.Id,
+                                    IsFavorite = false
+                                })
                         }
                         else
                         {
-                            <form asp-controller="Profile" asp-action="AddToFav" method="post">
-                                <input type="hidden" name="id" value="@Model.Id" />
-                                <button type="submit" class="btn-icon">
-                                    <img src="@Url.Content("~/Images/starNoFav.png")" alt="Star No Favorite Icon">
-                                </button>
-                            </form>
+                            @await Html.PartialAsync("FavoriteIconPartial",
+                                new FavoriteIconViewModel
+                                {
+                                    AdviceId = Model.Id,
+                                    IsFavorite = true
+                                })
                         }
                     }
                 </div>
@@ -72,7 +72,13 @@
                 <img src="@Url.Content("~/Images/favorite.png")" alt="Favorite Advice Icon">
                 <h5>Mark as favorite</h5>
                 <p>Pick your favor advices and save them to read later.</p>
-                <a href="#">Read more</a>
+                @if(_signManager.IsSignedIn(User)){
+                    <a href="#">Go</a>
+                }
+                else
+                {
+                    <a asp-area="Identity" asp-page="/Account/Login">Go</a>
+                }
             </div>
         </div>
     </div>
