@@ -5,10 +5,17 @@
 
 @if (SignInManager.IsSignedIn(User))
 {
-    @if (User.IsInRole(Roles.Admin))
+    if (User.IsInRole(Roles.Admin))
     {
         <li class="nav-item">
             <a class="nav-link text-dark" asp-area="Admin" asp-controller="Admin" asp-action="Index">Admin Area</a>
+        </li>
+    }
+
+    if(User.IsInRole(Roles.Admin) || User.IsInRole(Roles.Manager))
+    {
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-controller="Advices" asp-action="Index">Manage Advices</a>
         </li>
     }
 }
