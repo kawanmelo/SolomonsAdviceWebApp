@@ -59,4 +59,4 @@ We welcome contributions! Please fork this repository, make your changes, and su
 If you have any questions or want to connect, feel free to reach out:
 
    - Email: kawangcmelo@gmail.com
-   - LinkedIn: [linkedin.com/in/kawanmelo]
+   - [LinkedIn](linkedin.com/in/kawanmelo)
