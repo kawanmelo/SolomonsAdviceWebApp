@@ -48,15 +48,15 @@ Welcome to Solomon's Advice, a web application designed to provide users with me
 **Seeding Roles and Users**
 The application includes a seed method to create default roles and users. Upon first run, these roles will be created automatically.
 
-**📸 **
+##📸
 ![Home Page](img/homepage.png)
 
 
-**🤝 Contributing**
+##🤝 Contributing
 We welcome contributions! Please fork this repository, make your changes, and submit a pull request. For major changes, open an issue first to discuss what you would like to change.
 
 
-**📧 Contact**
+##📧 Contact
 If you have any questions or want to connect, feel free to reach out:
 
 Email: kawangcmelo@gmail.com
