@@ -34,7 +34,7 @@ Welcome to Solomon's Advice, a web application designed to provide users with me
       git clone https://github.com/yourusername/SolomonsAdviceWebApp.git
       cd SolomonsAdviceWebApp
    
-   2. **Ensure your SQL Server is running**:
+   2. **Set up the database**:
       - Ensure your SQL Server is running
       - Update the connection string in appsettings.json if necessary.
       - Run the migrations to set up the database:
@@ -49,7 +49,7 @@ Welcome to Solomon's Advice, a web application designed to provide users with me
 - The application includes a seed method to create default roles and users. Upon first run, these roles will be created automatically.
 
 ## 📸
-![Home Page](img/homepage.png)
+![Home Page](https://github.com/kawanmelo/SolomonsAdviceWebApp/blob/master/homepage.png)
 
 
 ## 🤝 Contributing
