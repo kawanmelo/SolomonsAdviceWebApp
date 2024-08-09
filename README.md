@@ -17,7 +17,6 @@ Welcome to Solomon's Advice, a web application designed to provide users with me
 - **Entity Framework Core**: For database interactions.
 - **Microsoft Identity**: Handling user authentication and authorization.
 - **SQL Server**: Primary database for storing advice and user data.
-- **Bootstrap**: For responsive design and styling.
 
 ## 🚀 Getting Started
 
@@ -48,7 +47,7 @@ Welcome to Solomon's Advice, a web application designed to provide users with me
 ## Seeding Roles and Users
 - The application includes a seed method to create default roles and users. Upon first run, these roles will be created automatically.
 
-## 📸
+## Home Page 📸
 ![Home Page](https://github.com/kawanmelo/SolomonsAdviceWebApp/blob/master/homepage.png)
 
 
@@ -59,5 +58,5 @@ We welcome contributions! Please fork this repository, make your changes, and su
 ## 📧 Contact
 If you have any questions or want to connect, feel free to reach out:
 
-Email: kawangcmelo@gmail.com
-LinkedIn: [Your LinkedIn Profile](https://www.linkedin.com/in/kawanmelo/)
+   - Email: kawangcmelo@gmail.com
+   - LinkedIn: [Your LinkedIn Profile](https://www.linkedin.com/in/kawanmelo/)
