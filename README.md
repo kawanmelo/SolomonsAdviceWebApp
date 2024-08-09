@@ -29,34 +29,34 @@ Welcome to Solomon's Advice, a web application designed to provide users with me
 
 ### Installation
 
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/yourusername/SolomonsAdviceWebApp.git
-   cd SolomonsAdviceWebApp
-
-2. **Ensure your SQL Server is running**:
-    Ensure your SQL Server is running
-    Update the connection string in appsettings.json if necessary.
-    Run the migrations to set up the database:
-   ```bash
-   dotnet ef database update
+   1. **Clone the repository**:
+      ```bash
+      git clone https://github.com/yourusername/SolomonsAdviceWebApp.git
+      cd SolomonsAdviceWebApp
    
-3. **Run the application**
-   ```bash
-    dotnet run
+   2. **Ensure your SQL Server is running**:
+      - Ensure your SQL Server is running
+      - Update the connection string in appsettings.json if necessary.
+      - Run the migrations to set up the database:
+      ```bash
+      dotnet ef database update
+      
+   3. **Run the application**
+      ```bash
+       dotnet run
 
-**Seeding Roles and Users**
-The application includes a seed method to create default roles and users. Upon first run, these roles will be created automatically.
+## Seeding Roles and Users
+- The application includes a seed method to create default roles and users. Upon first run, these roles will be created automatically.
 
-##📸
+## 📸
 ![Home Page](img/homepage.png)
 
 
-##🤝 Contributing
+## 🤝 Contributing
 We welcome contributions! Please fork this repository, make your changes, and submit a pull request. For major changes, open an issue first to discuss what you would like to change.
 
 
-##📧 Contact
+## 📧 Contact
 If you have any questions or want to connect, feel free to reach out:
 
 Email: kawangcmelo@gmail.com
