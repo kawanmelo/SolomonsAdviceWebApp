@@ -1,6 +1,6 @@
 # Solomon's Advice Web App
 
-![Solomon's Advice](https://via.placeholder.com/800x200.png?text=Solomon%27s+Advice+Web+App)
+![Solomon's Advice](https://via.placeholder.com/800x200.png?text=Solomon%27s+Advice)
 
 Welcome to Solomon's Advice, a web application designed to provide users with meaningful advice on various topics. This application allows users to register, explore, and interact with a variety of pieces of advice, making it a valuable tool for anyone looking for guidance or just a bit of wisdom in their day.
 
