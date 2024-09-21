@@ -23,8 +23,6 @@ Welcome to Solomon's Advice, a web application designed to provide users with me
 ### Prerequisites
 
 - [.NET 6.0 SDK](https://dotnet.microsoft.com/download)
-- [SQL Server](https://www.microsoft.com/en-us/sql-server/sql-server-downloads)
-- [Visual Studio 2022](https://visualstudio.microsoft.com/vs/)
 
 ### Installation
 
